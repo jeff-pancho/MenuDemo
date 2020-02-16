@@ -19,47 +19,46 @@ public class Game extends Application {
     public static int HEIGHT = 768;
     public static int CENTER_X = WIDTH / 2;
     public static int CENTER_Y = HEIGHT / 2;
-    
+
     private Keyboard kb;
 
     @Override
-    public void start(Stage stage) throws Exception {  
+    public void start(Stage stage) throws Exception {
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         Group root = new Group(canvas);
         Scene scene = new Scene(root);
-        
+
         kb = new Keyboard();
         scene.setOnKeyPressed(kb::captureInput);
         scene.setOnKeyReleased(kb::releaseInput);
-        
+
         Stack<Screen> screens = new Stack<>();
         screens.push(new MainMenu(gc, kb, screens));
-        
+
         stage.setMaxWidth(WIDTH);
         stage.setMaxHeight(HEIGHT);
         stage.setMinWidth(WIDTH);
         stage.setMinHeight(HEIGHT);
         stage.resizableProperty().setValue(false);
-        
+
         stage.setTitle("HexagonClone");
         stage.setScene(scene);
         stage.show();
-        
-        
+
         AnimationTimer timer = new AnimationTimer() {
             public void handle(long nanoTime) {
-                if(screens.size() > 0) {
+                if (screens.size() > 0) {
                     Screen curScreen = screens.peek();
                     curScreen.update();
                     curScreen.render();
                 }
             }
         };
-        
+
         timer.start();
     }
-    
+
     public void run() {
         launch();
     }

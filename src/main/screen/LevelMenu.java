@@ -11,25 +11,26 @@ import main.ui.UI;
 
 public class LevelMenu extends Screen {
     private ArrayList<UI> uiElements;
-    
+
     public LevelMenu(GraphicsContext gc, Keyboard kb, Stack<Screen> screens) {
         super(gc, kb, screens);
-        
+
         uiElements = new ArrayList<>();
-        
+
         uiElements.add(new LevelTitle(gc));
     }
 
     @Override
     public void update() {
-        
+        if (kb.isDown("ESCAPE"))
+            screens.pop();
     }
 
     @Override
     public void render() {
         gc.clearRect(0, 0, Game.WIDTH, Game.HEIGHT);
-        
-        for(UI curUI : uiElements)
+
+        for (UI curUI : uiElements)
             curUI.render();
     }
 }

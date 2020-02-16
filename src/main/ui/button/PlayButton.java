@@ -14,7 +14,7 @@ public class PlayButton extends Button {
     public PlayButton(GraphicsContext gc) {
         super(gc);
         img = new Image("file:./resources/button/play.png");
-        if(img != null) {
+        if (img != null) {
             width = img.getWidth();
             height = img.getHeight();
         }
@@ -22,18 +22,17 @@ public class PlayButton extends Button {
         y = Game.CENTER_Y + height / 2;
     }
 
-
     @Override
     public void update() {
         // terrible, fix later
-        if(isSwitching()) {
+        if (isSwitching()) {
             x += Math.abs(x - (Game.CENTER_X - width / 2)) / 5;
-            if(Math.abs(x - (Game.CENTER_X - width / 2)) <= 2) {
+            if (Math.abs(x - (Game.CENTER_X - width / 2)) <= 2) {
                 x = Game.CENTER_X - width / 2;
                 y = Game.CENTER_Y + height / 2;
                 setSwitching(false);
-            }  
-        } else if(!isSelected()) {
+            }
+        } else if (!isSelected()) {
             x = -350;
             y = Game.CENTER_Y + height / 2;
         }
