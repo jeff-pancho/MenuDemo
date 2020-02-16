@@ -1,16 +1,20 @@
 package main.ui.button;
 
 import javafx.scene.canvas.GraphicsContext;
+import main.Game;
 import main.ui.UI;
 
 public abstract class Button extends UI {
-    private boolean switching = false;
-    private boolean selected;
+    protected boolean switching = false;
+    protected boolean selected;
+    protected double x;
+    protected double y;
+    protected double dir;
 
     public Button(GraphicsContext gc) {
         super(gc);
     }
-
+    
 //    public abstract void press();
 
     public boolean isSelected() {
@@ -27,5 +31,9 @@ public abstract class Button extends UI {
 
     public void setSwitching(boolean switching) {
         this.switching = switching;
+    }
+    
+    public void setDir(double dir) {
+        this.dir = dir;
     }
 }

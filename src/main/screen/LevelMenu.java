@@ -21,6 +21,9 @@ public class LevelMenu extends Screen {
     private int curInd;
     private Button curButton;
     private Button lvl1, lvl2, lvl3;
+    
+    private double dir;
+    private double targetDir;
 
     public LevelMenu(GraphicsContext gc, Keyboard kb, Stack<Screen> screens) {
         super(gc, kb, screens);
@@ -43,6 +46,11 @@ public class LevelMenu extends Screen {
         buttons.add(lvl2);
         buttons.add(lvl3);
         
+        dir = 3 * Math.PI / 2;
+        targetDir = dir;
+        
+        setButtonDir();
+        
         uiElements.add(new LevelTitle(gc));
     }
 
@@ -50,19 +58,19 @@ public class LevelMenu extends Screen {
     public void update() {
         if (!curButton.isSwitching()) {
             if (kb.isDown("LEFT")) {
-                curButton.setSelected(false);
-                changeCurInd(-1);
-                switchButton();
+                changeButton(-1);
             } else if (kb.isDown("RIGHT")) {
-                curButton.setSelected(false);
-                changeCurInd(1);
-                switchButton();
+                changeButton(1);
             } else if (kb.isDown("ENTER")) {
                 
             } else if (kb.isDown("ESCAPE")) {
                 screens.pop();
             }
         }
+        
+        dir -= (dir - targetDir) / 7;
+        setButtonDir();
+        
         for (UI curUI : uiElements)
             curUI.update();
     }
@@ -75,11 +83,26 @@ public class LevelMenu extends Screen {
             curUI.render();
     }
     
+    private void setButtonDir() {
+        for(int i = 0; i < buttons.size(); i++) {
+            Button b = buttons.get(i);
+            b.setDir(dir + (2 * Math.PI / buttons.size()) * i);
+        }
+    }
+
     private void changeCurInd(int amount) {
         curInd += amount;
         curInd %= buttons.size();
         if (curInd < 0)
             curInd += buttons.size();
+    }
+    
+    private void changeButton(int i) {
+        curButton.setSelected(false);
+        changeCurInd(i);
+        switchButton();
+        
+        targetDir -= 2 * Math.PI / buttons.size() * i;
     }
 
     private void switchButton() {

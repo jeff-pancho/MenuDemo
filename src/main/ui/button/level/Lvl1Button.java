@@ -9,8 +9,6 @@ public class Lvl1Button extends Button {
     private Image img;
     private double width;
     private double height;
-    private double x;
-    private double y;
 
     public Lvl1Button(GraphicsContext gc) {
         super(gc);
@@ -26,17 +24,27 @@ public class Lvl1Button extends Button {
     @Override
     public void update() {
         // terrible, fix later
-        if (isSwitching()) {
-            x += Math.abs(x - (Game.CENTER_X - width / 2)) / 5;
-            if (Math.abs(x - (Game.CENTER_X - width / 2)) <= 2) {
-                x = Game.CENTER_X - width / 2;
-                y = Game.CENTER_Y + height / 2;
-                setSwitching(false);
-            }
-        } else if (!isSelected()) {
-            x = -350;
-            y = Game.CENTER_Y + height / 2;
-        }
+//        if (switching) {
+//            x += Math.abs(x - (Game.CENTER_X - width / 2)) / 5;
+//            if (Math.abs(x - (Game.CENTER_X - width / 2)) <= 2) {
+//                x = Game.CENTER_X - width / 2;
+//                y = Game.CENTER_Y + height / 2;
+//                switching = false;
+//            }
+//        } else if (!selected) {
+//            x = -350;
+//            y = Game.CENTER_Y + height / 2;
+//        }
+        double centerX = Game.CENTER_X - width / 2;
+        double centerY = Game.HEIGHT - height / 2;
+        
+        x = centerX + Math.cos(dir) * 200;
+        y = centerY + Math.sin(dir) * 200;
+        
+        if (switching
+                && Math.abs(x - (centerX + Math.cos(3 * Math.PI / 2) * 200)) <= 1
+                && Math.abs(y - (centerY + Math.sin(3 * Math.PI / 2) * 200)) <= 1)
+            switching = false;
     }
 
     @Override
