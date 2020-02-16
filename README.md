@@ -1,4 +1,4 @@
 # MenuDemo
 Implementation of menus for a game
 
-Oh god whyy
+Features the secret technique: Al Dente Code
