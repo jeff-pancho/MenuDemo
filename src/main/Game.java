@@ -36,9 +36,16 @@ public class Game extends Application {
         Stack<Screen> screens = new Stack<>();
         screens.push(new MainMenu(gc, kb));
         
+        stage.setMaxWidth(WIDTH);
+        stage.setMaxHeight(HEIGHT);
+        stage.setMinWidth(WIDTH);
+        stage.setMinHeight(HEIGHT);
+        stage.resizableProperty().setValue(false);
+        
         stage.setTitle("HexagonClone");
         stage.setScene(scene);
         stage.show();
+        
         
         AnimationTimer timer = new AnimationTimer() {
             public void handle(long nanoTime) {

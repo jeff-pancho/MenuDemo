@@ -1,12 +1,25 @@
 package main.ui.button;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import main.Game;
 
 public class PlayButton extends Button {
+    private Image img;
+    private double width;
+    private double height;
+    private double x;
+    private double y;
 
     public PlayButton(GraphicsContext gc) {
         super(gc);
+        img = new Image("file:./resources/button/play.png");
+        if(img != null) {
+            width = img.getWidth();
+            height = img.getHeight();
+        }
+        x = -350;
+        y = Game.CENTER_Y + height / 2;
     }
 
     @Override
@@ -16,16 +29,23 @@ public class PlayButton extends Button {
 
     @Override
     public void update() {
-        if(count > 0)
-            count--;
-        else {
-            count = 0;
-            switching = false;
+        // terrible, fix later
+        if(isSwitching()) {
+            x += Math.abs(x - (Game.CENTER_X - width / 2)) / 5;
+//            y += Math.abs(y - (Game.CENTER_Y + height / 2)) / 7;
+            if(Math.abs(x - (Game.CENTER_X - width / 2)) <= 2) {
+                x = Game.CENTER_X - width / 2;
+                y = Game.CENTER_Y + height / 2;
+                setSwitching(false);
+            }  
+        } else if(!isSelected()) {
+            x = -350;
+            y = Game.CENTER_Y + height / 2;
         }
     }
 
     @Override
     public void render() {
-        gc.fillRect(Game.CENTER_X, Game.CENTER_Y + 125, 300, 75);
+        gc.drawImage(img, x, y);
     }
 }
