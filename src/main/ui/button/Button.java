@@ -11,7 +11,7 @@ public abstract class Button extends UI {
         super(gc);
     }
     
-    public abstract void press();
+//    public abstract void press();
     
     public boolean isSelected() {
         return this.selected;

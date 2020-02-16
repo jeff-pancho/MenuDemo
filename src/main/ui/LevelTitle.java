@@ -4,16 +4,16 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import main.Game;
 
-public class Title extends UI {
+public class LevelTitle extends UI {
     private Image img;
     private double width;
     private double height;
     private double x;
     private double y;
 
-    public Title(GraphicsContext gc) {
+    public LevelTitle(GraphicsContext gc) {
         super(gc);
-        img = new Image("file:./resources/title.png");
+        img = new Image("file:./resources/level.png");
         width = img.getWidth();
         height = img.getHeight();
         x = Game.CENTER_X - width / 2;

@@ -23,17 +23,12 @@ public class QuitButton extends Button {
         y = Game.CENTER_Y + height / 2;
     }
 
-    @Override
-    public void press() {
-        Platform.exit();
-    }
-
+    
     @Override
     public void update() {
         // terrible, fix later
         if(isSwitching()) {
             x += Math.abs(x - (Game.CENTER_X - width / 2)) / 5;
-//            y += Math.abs(y - (Game.CENTER_Y + height / 2)) / 7;
             if(Math.abs(x - (Game.CENTER_X - width / 2)) <= 2) {
                 x = Game.CENTER_X - width / 2;
                 y = Game.CENTER_Y + height / 2;

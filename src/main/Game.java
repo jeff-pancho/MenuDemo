@@ -34,7 +34,7 @@ public class Game extends Application {
         scene.setOnKeyReleased(kb::releaseInput);
         
         Stack<Screen> screens = new Stack<>();
-        screens.push(new MainMenu(gc, kb));
+        screens.push(new MainMenu(gc, kb, screens));
         
         stage.setMaxWidth(WIDTH);
         stage.setMaxHeight(HEIGHT);
