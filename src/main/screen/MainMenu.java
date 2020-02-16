@@ -11,8 +11,8 @@ import main.input.Keyboard;
 import main.ui.UI;
 import main.ui.MainTitle;
 import main.ui.button.Button;
-import main.ui.button.PlayButton;
-import main.ui.button.QuitButton;
+import main.ui.button.menu.PlayButton;
+import main.ui.button.menu.QuitButton;
 
 public class MainMenu extends Screen {
     private ArrayList<UI> uiElements;

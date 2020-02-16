@@ -1,20 +1,20 @@
-package main.ui.button;
+package main.ui.button.menu;
 
-import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import main.Game;
+import main.ui.button.Button;
 
-public class QuitButton extends Button {
+public class PlayButton extends Button {
     private Image img;
     private double width;
     private double height;
     private double x;
     private double y;
 
-    public QuitButton(GraphicsContext gc) {
+    public PlayButton(GraphicsContext gc) {
         super(gc);
-        img = new Image("file:./resources/button/quit.png");
+        img = new Image("file:./resources/button/play.png");
         if (img != null) {
             width = img.getWidth();
             height = img.getHeight();
